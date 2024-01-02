@@ -6,10 +6,9 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rpg.potato.app.Dice;
-import rpg.potato.app.GameState;
+import rpg.potato.app.GameHandler;
 import rpg.potato.app.events.Event;
 import rpg.potato.app.events.EventFactory;
-import rpg.potato.app.events.HurlingEvent;
 import rpg.potato.exceptions.EventNotFoundException;
 
 import java.util.List;
@@ -21,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("/game")
 public class EventController {
-    private final GameState state = new GameState();
+    private final GameHandler state = new GameHandler();
     private final EventFactory eventFactory = new EventFactory(new Dice());
     private final EventRepository repository;
     private final EventModelAssembler assembler;
@@ -68,7 +67,7 @@ public class EventController {
     @PostMapping("/removeOrc")
     public ResponseEntity<EntityModel<EventEntity>> removeOrc() {
 
-        EventEntity entity = state.applyEvent(new HurlingEvent(state.getScaling()));
+        EventEntity entity = state.applyScaling();
 
         if (state.isFinished()) {
             entity.setMessage(state.generateFinalMessage());

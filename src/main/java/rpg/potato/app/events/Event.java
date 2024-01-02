@@ -5,11 +5,8 @@ import lombok.Setter;
 import rpg.potato.app.Outcome;
 
 @Getter
-public abstract class Event {
+public class Event {
     @Setter
     protected String message = "";
     protected Outcome result = new Outcome();
-
-    public abstract Event generateEvent(int diceResult);
-
 }

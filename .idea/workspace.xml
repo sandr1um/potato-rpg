@@ -5,30 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dd6cd4b-b972-4807-9775-d419b9830a19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/jsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Outcome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DarkEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DoorEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/EventFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/GardenEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/HurlingEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DiceEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/NoDiceEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Outcome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Outcome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DarkEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DarkEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DoorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DoorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/GardenEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/GardenEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/HurlingEvent.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,36 +37,39 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2aORJUPU1btjBTTuYVEzYAij94A" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Debug",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.PotatoRPG.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PotatoRPG.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\aivanets\IdeaProjects\potato-rpg\src\main\resources\static" />
@@ -99,6 +88,13 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-3183f394aec4-7d648f2c" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -107,11 +103,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704187569186</updated>
-      <workItem from="1704187570300" duration="4038000" />
+      <workItem from="1704187570300" duration="5531000" />
+      <workItem from="1704195463450" duration="2986000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
