@@ -4,11 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dd6cd4b-b972-4807-9775-d419b9830a19" name="Changes" comment="" />
+    <list default="true" id="8dd6cd4b-b972-4807-9775-d419b9830a19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Potato-Spiel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/PotatoRpgApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Attribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Dice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventModelAssembler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/LoadDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/exceptions/EventNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tsm/Main.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,14 +50,41 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Debug",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.PotatoRPG.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aivanets\IdeaProjects\potato-rpg" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PotatoRPG" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="temurin-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="potato-rpg" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="rpg.potato.PotatoRpgApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704187569186</updated>
-      <workItem from="1704187570300" duration="2000" />
+      <workItem from="1704187570300" duration="1488000" />
     </task>
     <servers />
   </component>
