@@ -20,14 +20,18 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("/game")
 public class EventController {
-    private final GameHandler state = new GameHandler();
-    private final EventFactory eventFactory = new EventFactory(new Dice());
+    private final GameHandler gameHandler;
+    private final EventFactory eventFactory;
     private final EventRepository repository;
     private final EventModelAssembler assembler;
+    private final Dice dice;
 
     public EventController(EventRepository repository, EventModelAssembler assembler) {
+        this.gameHandler = new GameHandler();
+        this.eventFactory = new EventFactory(new Dice());
         this.repository = repository;
         this.assembler = assembler;
+        this.dice = new Dice();
     }
 
     @GetMapping("/events")
@@ -51,12 +55,15 @@ public class EventController {
 
     @PostMapping("/apply")
     public ResponseEntity<EntityModel<EventEntity>> applyEvent() {
-        Event nextEvent = eventFactory.generateEvent();
 
-        EventEntity entity = state.applyEvent(nextEvent);
+        int firstDiceRoll = dice.roll();
+        Event nextEvent = eventFactory.generateEvent(firstDiceRoll);
 
-        if (state.isFinished()) {
-            entity.setMessage(state.generateFinalMessage());
+        EventEntity entity = gameHandler.applyEvent(nextEvent);
+
+        if (gameHandler.isFinished()) {
+            String finalMessage = gameHandler.generateFinalMessage();
+            entity.setMessage(finalMessage);
         }
 
         EntityModel<EventEntity> entityModel = assembler.toModel(repository.save(entity));
@@ -67,10 +74,11 @@ public class EventController {
     @PostMapping("/removeOrc")
     public ResponseEntity<EntityModel<EventEntity>> removeOrc() {
 
-        EventEntity entity = state.applyScaling();
+        EventEntity entity = gameHandler.applyScaling();
 
-        if (state.isFinished()) {
-            entity.setMessage(state.generateFinalMessage());
+        if (gameHandler.isFinished()) {
+            String finalMessage = gameHandler.generateFinalMessage();
+            entity.setMessage(finalMessage);
         }
 
         EntityModel<EventEntity> entityModel = assembler.toModel(repository.save(entity));
@@ -80,7 +88,7 @@ public class EventController {
 
     @PutMapping("/newGame")
     public ResponseEntity<EntityModel<EventEntity>> newGame() {
-        EventEntity entity = state.startNewGame();
+        EventEntity entity = gameHandler.startNewGame();
 
         EntityModel<EventEntity> entityModel = assembler.toModel(repository.save(entity));
 
