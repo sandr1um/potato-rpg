@@ -5,22 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dd6cd4b-b972-4807-9775-d419b9830a19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Potato-Spiel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/PotatoRpgApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Attribute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Dice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventModelAssembler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/LoadDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/exceptions/EventNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/jsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/Outcome.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DarkEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/DoorEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/EventFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/GardenEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/events/HurlingEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tsm/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/app/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rpg/potato/event/EventController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +47,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 7
@@ -71,6 +83,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aivanets\IdeaProjects\potato-rpg\src\main\resources\static" />
+      <recent name="C:\Users\aivanets\IdeaProjects\potato-rpg\src\main\resources" />
       <recent name="C:\Users\aivanets\IdeaProjects\potato-rpg" />
     </key>
   </component>
@@ -93,7 +107,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704187569186</updated>
-      <workItem from="1704187570300" duration="1488000" />
+      <workItem from="1704187570300" duration="4038000" />
     </task>
     <servers />
   </component>

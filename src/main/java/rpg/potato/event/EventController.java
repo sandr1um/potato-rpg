@@ -5,7 +5,11 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rpg.potato.app.*;
+import rpg.potato.app.Dice;
+import rpg.potato.app.GameState;
+import rpg.potato.app.events.Event;
+import rpg.potato.app.events.EventFactory;
+import rpg.potato.app.events.HurlingEvent;
 import rpg.potato.exceptions.EventNotFoundException;
 
 import java.util.List;
@@ -15,16 +19,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/")
+@RequestMapping("/game")
 public class EventController {
-    private final GameState state;
-    private final Dice dice;
+    private final GameState state = new GameState();
+    private final EventFactory eventFactory = new EventFactory(new Dice());
     private final EventRepository repository;
     private final EventModelAssembler assembler;
 
     public EventController(EventRepository repository, EventModelAssembler assembler) {
-        this.state = new GameState();
-        this.dice = new Dice();
         this.repository = repository;
         this.assembler = assembler;
     }
@@ -32,8 +34,7 @@ public class EventController {
     @GetMapping("/events")
     CollectionModel<EntityModel<EventEntity>> all() {
 
-        List<EntityModel<EventEntity>> events = repository.findAll()
-                .stream() //
+        List<EntityModel<EventEntity>> events = repository.findAll().stream() //
                 .map(assembler::toModel) //
                 .toList();
 
@@ -51,7 +52,6 @@ public class EventController {
 
     @PostMapping("/apply")
     public ResponseEntity<EntityModel<EventEntity>> applyEvent() {
-        EventFactory eventFactory = new EventFactory(dice);
         Event nextEvent = eventFactory.createEvent();
 
         EventEntity entity = state.applyEvent(nextEvent);
@@ -87,4 +87,5 @@ public class EventController {
 
         return ResponseEntity.ok(entityModel);
     }
+
 }

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato RPG</title>
+    <!-- Use Vue.js version 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <style>
+        /* Add some basic styling for the squares */
+        .square {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1>Potato RPG</h1>
+
+    <!-- Input fields for values from 0 to 10 -->
+    <div>
+        <h2 for="destiny">Destiny:</h2>
+        <div v-for="(color, index) in destiny_squares" :key="index" class="square" :style="{ backgroundColor: color }"></div>
+    </div>
+
+    <div>
+        <h2 for="potatoes">Potatoes:</h2>
+        <div v-for="(color, index) in potato_squares" :key="index" class="square" :style="{ backgroundColor: color }"></div>
+    </div>
+
+    <div>
+        <h2 for="orcs">Orcs:</h2>
+        <div v-for="(color, index) in orc_squares" :key="index" class="square" :style="{ backgroundColor: color }"></div>
+    </div>
+
+    <div>
+        <button @click="getMethod()">Show all Events</button>
+        <button @click="postMethod('/apply')">Roll</button>
+        <button @click="postMethod('/removeOrc')">Remove 1 Orc</button>
+        <button @click="putMethod()">New Game</button>
+    </div>
+
+    <div>
+        <h2>Scaling:</h2>
+        <p>{{scaling}}<p>
+    </div>
+
+    <!-- Display the result -->
+    <div>
+        <h2>Message:</h2>
+        <p>{{ message }}</p>
+    </div>
+    <div>
+        <h2>All Messages:</h2>
+        <ul>
+            <li v-for="(msg, index) in allMessages" :key="index">{{ msg.message }}</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Corrected: use data as a function
+    const app = Vue.createApp({
+        data() {
+            return {
+                id: 0,
+                destiny: 0,
+                potatoes: 0,
+                orcs: 0,
+                scaling: 1,
+                message: "New Game!",
+                destiny_squares: Array(10).fill('lightblue'), // Initialize colors array with default color
+                potato_squares: Array(10).fill('lightblue'),
+                orc_squares: Array(10).fill('lightblue'),
+                allMessages: []
+            };
+        },
+        methods: {
+            postMethod(endpoint) {
+                fetch('/game' + endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.json(); // assuming the response is JSON
+                })
+                .then(data => {
+                    this.message = JSON.stringify(data.message);
+                    this.scaling = JSON.parse(data.scaling);
+
+                    this.destiny_squares.fill('lightblue')
+                    this.potato_squares.fill('lightblue')
+                    this.orc_squares.fill('lightblue')
+
+
+                    this.destiny_squares.fill('darkred', 0, JSON.parse(data.destiny));
+                    this.potato_squares.fill('#ffc284', 0, JSON.parse(data.potatoes));
+                    this.orc_squares.fill('#227325', 0, JSON.parse(data.orcs))
+                })
+                    .catch(error => {
+                        // Handle errors
+                        this.message = 'Error: ' + error.message;
+                    });
+            },
+
+            getMethod() {
+                fetch('/game/events', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+            })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json(); // assuming the response is JSON
+                    })
+                    .then(data => {
+                        // Assume the backend returns a 'messages' property containing an array of messages
+                        if (data?._embedded?.eventEntityList) {
+                            this.allMessages = data?._embedded?.eventEntityList;
+                        }
+                    })
+                    .catch(error => {
+                        // Handle errors
+                        this.message = 'Error: ' + error.message;
+                    });
+            },
+
+            putMethod() {
+                fetch('/game/newGame', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json(); // assuming the response is JSON
+                    })
+                    .then(data => {
+                        this.message = JSON.stringify(data.message);
+                        this.scaling = JSON.parse(data.scaling);
+
+                        this.destiny_squares.fill('lightblue')
+                        this.potato_squares.fill('lightblue')
+                        this.orc_squares.fill('lightblue')
+
+
+                        this.destiny_squares.fill('darkred', 0, JSON.parse(data.destiny));
+                        this.potato_squares.fill('#ffc284', 0, JSON.parse(data.potatoes));
+                        this.orc_squares.fill('#227325', 0, JSON.parse(data.orcs))
+                    })
+                    .catch(error => {
+                        // Handle errors
+                        this.message = 'Error: ' + error.message;
+                    });
+            }
+        }
+    });
+
+    app.mount('#app');
+</script>
+
+</body>
+</html>
