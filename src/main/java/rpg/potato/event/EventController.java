@@ -51,7 +51,7 @@ public class EventController {
 
     @PostMapping("/apply")
     public ResponseEntity<EntityModel<EventEntity>> applyEvent() {
-        Event nextEvent = eventFactory.createEvent();
+        Event nextEvent = eventFactory.generateEvent();
 
         EventEntity entity = state.applyEvent(nextEvent);
 

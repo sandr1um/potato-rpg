@@ -35,7 +35,7 @@ public class GameHandler {
 
     public EventEntity applyEvent(Event event) {
         if (!isFinished()) {
-            scores.keySet().forEach(item -> changeScore(item, event.getResult().getChange(item)));
+            event.getModifiers().forEach(this::changeScore);
         }
         return new EventEntity(
                 getScore(DESTINY),

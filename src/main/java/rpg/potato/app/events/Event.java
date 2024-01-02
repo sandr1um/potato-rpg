@@ -1,12 +1,15 @@
 package rpg.potato.app.events;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-import rpg.potato.app.Outcome;
+import rpg.potato.app.Attribute;
 
+import java.util.EnumMap;
+
+
+@AllArgsConstructor
 @Getter
 public class Event {
-    @Setter
-    protected String message = "";
-    protected Outcome result = new Outcome();
+    protected String message;
+    protected EnumMap<Attribute, Integer> modifiers;
 }
