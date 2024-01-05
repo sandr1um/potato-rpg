@@ -87,7 +87,7 @@ public class GameHandler {
                 .stream()
                 .filter(item -> scores.get(item) == 10 && !item.equals(Attribute.SCALING))
                 .findAny()
-                .get();
+                .orElseThrow();
 
         return switch (endAttribute) {
             case DESTINY ->"An interfering bard or wizard turns up at your doorstep with a quest," +
