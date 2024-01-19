@@ -1,15 +1,19 @@
 package rpg.potato.app.events;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import rpg.potato.app.Attribute;
 
 import java.util.EnumMap;
 
-
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public class Event {
-    protected String message;
-    protected EnumMap<Attribute, Integer> modifiers;
+    private String message;
+    private EnumMap<Attribute, Integer> modifiers;
+    public void setModifier(Attribute attribute, int value) {
+        modifiers.put(attribute, value);
+    }
 }
