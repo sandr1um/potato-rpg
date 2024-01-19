@@ -1,45 +1,43 @@
 package rpg.potato.app.events;
 
-import rpg.potato.app.Attribute;
-
-import java.util.EnumMap;
+import org.springframework.stereotype.Component;
 
 import static rpg.potato.app.Attribute.*;
 
+@Component
 public class GardenEventFactory {
     public Event generateGardenEvent(int diceRoll) {
-        String message = "";
-        EnumMap<Attribute, Integer> modifiers = new EnumMap<>(Attribute.class);
+        Event gardenEvent = new Event();
         switch (diceRoll) {
             case 1 -> {
-                message = "You happily root about all day in your garden";
-                modifiers.put(POTATOES, 1);
+                gardenEvent.setMessage("You happily root about all day in your garden");
+                gardenEvent.setModifier(POTATOES, 1);
             }
             case 2 -> {
-                message = "You narrowly avoid a visitor by hiding in a potato sack.";
-                modifiers.put(DESTINY, 1);
-                modifiers.put(POTATOES, 1);
+                gardenEvent.setMessage("You narrowly avoid a visitor by hiding in a potato sack.");
+                gardenEvent.setModifier(DESTINY, 1);
+                gardenEvent.setModifier(POTATOES, 1);
             }
             case 3 -> {
-                message = "A hooded stranger lingers outside your farm";
-                modifiers.put(DESTINY, 1);
-                modifiers.put(ORCS, 1);
+                gardenEvent.setMessage("A hooded stranger lingers outside your farm");
+                gardenEvent.setModifier(DESTINY, 1);
+                gardenEvent.setModifier(ORCS, 1);
             }
             case 4 -> {
-                message = "Your field is ravaged in the night by unseen enemies.";
-                modifiers.put(ORCS, 1);
-                modifiers.put(POTATOES, -1);
+                gardenEvent.setMessage("Your field is ravaged in the night by unseen enemies.");
+                gardenEvent.setModifier(ORCS, 1);
+                gardenEvent.setModifier(POTATOES, -1);
             }
             case 5 -> {
-                message = "You trade potatoes for other delicious foodstuffs";
-                modifiers.put(POTATOES, -1);
+                gardenEvent.setMessage("You trade potatoes for other delicious foodstuffs");
+                gardenEvent.setModifier(POTATOES, -1);
             }
             case 6 -> {
-                message = "You burrow into a bumper crop of potatoes. Do you cry with joy? Possibly.";
-                modifiers.put(POTATOES, 2);
+                gardenEvent.setMessage("You burrow into a bumper crop of potatoes. Do you cry with joy? Possibly.");
+                gardenEvent.setModifier(POTATOES, 2);
             }
         }
-        return new Event(message, modifiers);
+        return gardenEvent;
     }
 
 }
