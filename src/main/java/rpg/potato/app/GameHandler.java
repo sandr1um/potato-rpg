@@ -1,7 +1,7 @@
 package rpg.potato.app;
 
 import rpg.potato.app.events.Event;
-import rpg.potato.event.EventEntity;
+import rpg.potato.event.GameStateEntity;
 
 import java.util.EnumMap;
 
@@ -21,11 +21,11 @@ public class GameHandler {
         return scores.get(attribute);
     }
 
-    public EventEntity startNewGame() {
+    public GameStateEntity startNewGame() {
         scores.replaceAll((a, v) -> 0);
         scores.put(SCALING, 1);
 
-        return new EventEntity(
+        return new GameStateEntity(
                 getScore(DESTINY),
                 getScore(POTATOES),
                 getScore(ORCS),
@@ -33,11 +33,11 @@ public class GameHandler {
                 "New Game!");
     }
 
-    public EventEntity applyEvent(Event event) {
+    public GameStateEntity applyEvent(Event event) {
         if (!isFinished()) {
             event.getModifiers().forEach(this::changeScore);
         }
-        return new EventEntity(
+        return new GameStateEntity(
                 getScore(DESTINY),
                 getScore(POTATOES),
                 getScore(ORCS),
@@ -45,7 +45,7 @@ public class GameHandler {
                 event.getMessage());
     }
 
-    public EventEntity applyScaling() {
+    public GameStateEntity applyScaling() {
         String message;
         if (getScore(ORCS) == 0) {
             message = "There are no orcs";
@@ -59,7 +59,7 @@ public class GameHandler {
             message = "Not enough potatoes";
         }
 
-        return new EventEntity(
+        return new GameStateEntity(
                 getScore(DESTINY),
                 getScore(POTATOES),
                 getScore(ORCS),
