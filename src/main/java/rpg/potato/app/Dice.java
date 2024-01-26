@@ -1,7 +1,10 @@
 package rpg.potato.app;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class Dice {
     private static final Random rnd = new Random();
 

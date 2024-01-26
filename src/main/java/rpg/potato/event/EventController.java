@@ -1,5 +1,6 @@
 package rpg.potato.event;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import rpg.potato.app.Dice;
 import rpg.potato.app.GameHandler;
 import rpg.potato.app.events.Event;
-import rpg.potato.app.events.EventFactory;
+import rpg.potato.app.events.EventFactoryFassade;
 import rpg.potato.exceptions.EventNotFoundException;
 
 import java.util.List;
@@ -21,17 +22,19 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/game")
 public class EventController {
     private final GameHandler gameHandler;
-    private final EventFactory eventFactory;
+    @Autowired
+    private final EventFactoryFassade eventFactory;
     private final EventRepository repository;
     private final EventModelAssembler assembler;
+    @Autowired
     private final Dice dice;
 
     public EventController(EventRepository repository, EventModelAssembler assembler) {
         this.gameHandler = new GameHandler();
-        this.eventFactory = new EventFactory(new Dice());
+        this.dice = new Dice();
+        this.eventFactory = new EventFactoryFassade();
         this.repository = repository;
         this.assembler = assembler;
-        this.dice = new Dice();
     }
 
     @GetMapping("/events")

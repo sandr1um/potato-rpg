@@ -7,7 +7,7 @@ import rpg.potato.app.Dice;
 @Component
 public class EventFactoryFassade {
 
-    @Autowired //better Constructor Injection
+    @Autowired
     private Dice dice;
     @Autowired
     private GardenEventFactory gardenEventFactory;
