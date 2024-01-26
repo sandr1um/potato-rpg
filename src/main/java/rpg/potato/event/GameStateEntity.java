@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @Entity
 @NoArgsConstructor
-public class EventEntity {
+public class GameStateEntity {
     private @Id
     @GeneratedValue Long id;
     private int destiny;
@@ -18,7 +18,7 @@ public class EventEntity {
     private int scaling;
     private String message;
 
-    public EventEntity(int destiny, int potatoes, int orcs, int scaling, String message) {
+    public GameStateEntity(int destiny, int potatoes, int orcs, int scaling, String message) {
         this.destiny = destiny;
         this.potatoes = potatoes;
         this.orcs = orcs;

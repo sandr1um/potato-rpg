@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
     @Bean
-    CommandLineRunner initDatabase(EventRepository repository) {
+    CommandLineRunner initDatabase(GameStateRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new EventEntity(0, 0, 0, 1, "")));
+            log.info("Preloading " + repository.save(new GameStateEntity(0, 0, 0, 1, "")));
         };
     }
 }

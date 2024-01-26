@@ -20,16 +20,16 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @SpringBootApplication
 @RestController
 @RequestMapping("/game")
-public class EventController {
+public class GameStateController {
     private final GameHandler gameHandler;
     @Autowired
     private final EventFactoryFassade eventFactory;
-    private final EventRepository repository;
-    private final EventModelAssembler assembler;
+    private final GameStateRepository repository;
+    private final GameStateModelAssembler assembler;
     @Autowired
     private final Dice dice;
 
-    public EventController(EventRepository repository, EventModelAssembler assembler) {
+    public GameStateController(GameStateRepository repository, GameStateModelAssembler assembler) {
         this.gameHandler = new GameHandler();
         this.dice = new Dice();
         this.eventFactory = new EventFactoryFassade();
@@ -38,62 +38,62 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    CollectionModel<EntityModel<EventEntity>> all() {
+    CollectionModel<EntityModel<GameStateEntity>> all() {
 
-        List<EntityModel<EventEntity>> events = repository.findAll().stream() //
+        List<EntityModel<GameStateEntity>> events = repository.findAll().stream() //
                 .map(assembler::toModel) //
                 .toList();
 
-        return CollectionModel.of(events, linkTo(methodOn(EventController.class).all()).withSelfRel());
+        return CollectionModel.of(events, linkTo(methodOn(GameStateController.class).all()).withSelfRel());
     }
 
     @GetMapping("{id}")
-    EntityModel<EventEntity> one(@PathVariable Long id) {
+    EntityModel<GameStateEntity> one(@PathVariable Long id) {
 
-        EventEntity game = repository.findById(id)
+        GameStateEntity game = repository.findById(id)
                 .orElseThrow(() -> new EventNotFoundException(id));
 
         return assembler.toModel(game);
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<EntityModel<EventEntity>> applyEvent() {
+    public ResponseEntity<EntityModel<GameStateEntity>> applyEvent() {
 
         int firstDiceRoll = dice.roll();
         Event nextEvent = eventFactory.generateEvent(firstDiceRoll);
 
-        EventEntity entity = gameHandler.applyEvent(nextEvent);
+        GameStateEntity entity = gameHandler.applyEvent(nextEvent);
 
         if (gameHandler.isFinished()) {
             String finalMessage = gameHandler.generateFinalMessage();
             entity.setMessage(finalMessage);
         }
 
-        EntityModel<EventEntity> entityModel = assembler.toModel(repository.save(entity));
+        EntityModel<GameStateEntity> entityModel = assembler.toModel(repository.save(entity));
 
         return ResponseEntity.ok(entityModel);
     }
 
     @PostMapping("/removeOrc")
-    public ResponseEntity<EntityModel<EventEntity>> removeOrc() {
+    public ResponseEntity<EntityModel<GameStateEntity>> removeOrc() {
 
-        EventEntity entity = gameHandler.applyScaling();
+        GameStateEntity entity = gameHandler.applyScaling();
 
         if (gameHandler.isFinished()) {
             String finalMessage = gameHandler.generateFinalMessage();
             entity.setMessage(finalMessage);
         }
 
-        EntityModel<EventEntity> entityModel = assembler.toModel(repository.save(entity));
+        EntityModel<GameStateEntity> entityModel = assembler.toModel(repository.save(entity));
 
         return ResponseEntity.ok(entityModel);
     }
 
     @PutMapping("/newGame")
-    public ResponseEntity<EntityModel<EventEntity>> newGame() {
-        EventEntity entity = gameHandler.startNewGame();
+    public ResponseEntity<EntityModel<GameStateEntity>> newGame() {
+        GameStateEntity entity = gameHandler.startNewGame();
 
-        EntityModel<EventEntity> entityModel = assembler.toModel(repository.save(entity));
+        EntityModel<GameStateEntity> entityModel = assembler.toModel(repository.save(entity));
 
         return ResponseEntity.ok(entityModel);
     }
