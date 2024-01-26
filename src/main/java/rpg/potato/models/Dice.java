@@ -1,4 +1,4 @@
-package rpg.potato.app;
+package rpg.potato.models;
 
 import org.springframework.stereotype.Component;
 

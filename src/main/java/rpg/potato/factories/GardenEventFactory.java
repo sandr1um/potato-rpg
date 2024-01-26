@@ -1,8 +1,9 @@
-package rpg.potato.app.events;
+package rpg.potato.factories;
 
 import org.springframework.stereotype.Component;
+import rpg.potato.models.Event;
 
-import static rpg.potato.app.Attribute.*;
+import static rpg.potato.enums.Attribute.*;
 
 @Component
 public class GardenEventFactory {

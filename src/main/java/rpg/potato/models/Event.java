@@ -1,8 +1,8 @@
-package rpg.potato.app.events;
+package rpg.potato.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import rpg.potato.app.Attribute;
+import rpg.potato.enums.Attribute;
 
 import java.util.EnumMap;
 

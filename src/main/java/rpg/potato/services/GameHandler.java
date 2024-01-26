@@ -1,11 +1,12 @@
-package rpg.potato.app;
+package rpg.potato.services;
 
-import rpg.potato.app.events.Event;
-import rpg.potato.event.GameStateEntity;
+import rpg.potato.enums.Attribute;
+import rpg.potato.models.Event;
+import rpg.potato.models.GameStateEntity;
 
 import java.util.EnumMap;
 
-import static rpg.potato.app.Attribute.*;
+import static rpg.potato.enums.Attribute.*;
 
 
 public class GameHandler {

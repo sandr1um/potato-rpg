@@ -1,4 +1,4 @@
-package rpg.potato.event;
+package rpg.potato.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

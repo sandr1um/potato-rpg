@@ -1,4 +1,4 @@
-package rpg.potato.event;
+package rpg.potato.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,11 +6,14 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rpg.potato.app.Dice;
-import rpg.potato.app.GameHandler;
-import rpg.potato.app.events.Event;
-import rpg.potato.app.events.EventFactoryFassade;
+import rpg.potato.services.GameStateModelAssembler;
+import rpg.potato.models.Dice;
+import rpg.potato.services.GameHandler;
+import rpg.potato.models.Event;
+import rpg.potato.factories.EventFactoryFassade;
 import rpg.potato.exceptions.EventNotFoundException;
+import rpg.potato.models.GameStateEntity;
+import rpg.potato.repositories.GameStateRepository;
 
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class GameStateController {
     }
 
     @GetMapping("/events")
-    CollectionModel<EntityModel<GameStateEntity>> all() {
+    public CollectionModel<EntityModel<GameStateEntity>> all() {
 
         List<EntityModel<GameStateEntity>> events = repository.findAll().stream() //
                 .map(assembler::toModel) //
@@ -48,7 +51,7 @@ public class GameStateController {
     }
 
     @GetMapping("{id}")
-    EntityModel<GameStateEntity> one(@PathVariable Long id) {
+    public EntityModel<GameStateEntity> one(@PathVariable Long id) {
 
         GameStateEntity game = repository.findById(id)
                 .orElseThrow(() -> new EventNotFoundException(id));

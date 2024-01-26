@@ -1,4 +1,4 @@
-package rpg.potato.app;
+package rpg.potato.enums;
 
 public enum Attribute {
     DESTINY,

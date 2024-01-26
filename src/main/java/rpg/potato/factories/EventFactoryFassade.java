@@ -1,8 +1,9 @@
-package rpg.potato.app.events;
+package rpg.potato.factories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import rpg.potato.app.Dice;
+import rpg.potato.models.Dice;
+import rpg.potato.models.Event;
 
 @Component
 public class EventFactoryFassade {
