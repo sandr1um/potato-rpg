@@ -18,8 +18,9 @@ public class Score {
     }
 
     public void consume(int modifier) {
-        this.value = Math.max(this.value, this.value + modifier);
+        this.value += modifier;
         this.value = Math.min(10, this.value);
+        this.value = Math.max(0, this.value);
     }
 
 }

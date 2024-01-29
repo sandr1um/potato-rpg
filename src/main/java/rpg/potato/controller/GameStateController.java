@@ -6,6 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rpg.potato.factories.EndEventFactory;
 import rpg.potato.services.GameStateModelAssembler;
 import rpg.potato.models.Dice;
 import rpg.potato.services.GameHandler;
@@ -67,11 +68,6 @@ public class GameStateController {
 
         GameStateEntity entity = gameHandler.applyEvent(nextEvent);
 
-        if (gameHandler.isGameFinished()) {
-            String finalMessage = gameHandler.generateFinalMessage();
-            entity.setMessage(finalMessage);
-        }
-
         EntityModel<GameStateEntity> entityModel = assembler.toModel(repository.save(entity));
 
         return ResponseEntity.ok(entityModel);
@@ -81,11 +77,6 @@ public class GameStateController {
     public ResponseEntity<EntityModel<GameStateEntity>> removeOrc() {
 
         GameStateEntity entity = gameHandler.applyScaling();
-
-        if (gameHandler.isGameFinished()) {
-            String finalMessage = gameHandler.generateFinalMessage();
-            entity.setMessage(finalMessage);
-        }
 
         EntityModel<GameStateEntity> entityModel = assembler.toModel(repository.save(entity));
 
