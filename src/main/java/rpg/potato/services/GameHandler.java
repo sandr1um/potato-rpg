@@ -1,6 +1,8 @@
 package rpg.potato.services;
 
+import lombok.Getter;
 import rpg.potato.enums.Attribute;
+import rpg.potato.models.DarkEvent;
 import rpg.potato.models.Event;
 import rpg.potato.models.GameStateEntity;
 
@@ -11,13 +13,15 @@ import static rpg.potato.enums.Attribute.*;
 
 public class GameHandler {
     private final EnumMap<Attribute, Integer> gameStateScores;
+    @Getter
+    private int scaling;
 
     public GameHandler() {
         this.gameStateScores = new EnumMap<>(Attribute.class);
         this.gameStateScores.put(DESTINY, 0);
         this.gameStateScores.put(POTATOES, 0);
         this.gameStateScores.put(ORCS, 0);
-        this.gameStateScores.put(SCALING, 1);
+        this.scaling = 1;
     }
 
     public int getScore(Attribute attribute) {
@@ -26,7 +30,7 @@ public class GameHandler {
 
     public GameStateEntity startNewGame() {
         gameStateScores.replaceAll((a, v) -> 0);
-        gameStateScores.put(SCALING, 1);
+        this.scaling = 1;
 
         GameStateEntity gameState = new GameStateEntity();
         setGameStateValues(gameState, "New Game!");
@@ -36,7 +40,11 @@ public class GameHandler {
 
     public GameStateEntity applyEvent(Event event) {
         GameStateEntity gameState = new GameStateEntity();
-        
+
+        if (event instanceof DarkEvent) {
+            this.scaling++;
+        }
+
         if (!isFinished()) {
             event.getModifiers().forEach(this::changeScore);
         }
@@ -50,7 +58,7 @@ public class GameHandler {
         GameStateEntity gameState = new GameStateEntity();
         if (getScore(ORCS) == 0) {
             setGameStateValues(gameState, "There are no orcs");
-        } else if (getScore(POTATOES) >= getScore(SCALING)) {
+        } else if (getScore(POTATOES) >= scaling) {
             changeScore(ORCS, -1);
             changeScore(POTATOES, -1 * getScaling());
             setGameStateValues(gameState, "Removed one orc at the expense of " +
@@ -68,14 +76,14 @@ public class GameHandler {
         gameState.setDestiny(getScore(DESTINY));
         gameState.setPotatoes(getScore(POTATOES));
         gameState.setOrcs(getScore(ORCS));
-        gameState.setScaling(getScore(SCALING));
+        gameState.setScaling(scaling);
         gameState.setMessage(message);
     }
 
     public boolean isFinished() {
         return gameStateScores.keySet()
                 .stream()
-                .anyMatch(item -> gameStateScores.get(item) == 10 && !item.equals(Attribute.SCALING));
+                .anyMatch(item -> gameStateScores.get(item) == 10);
     }
 
     private void changeScore(Attribute attribute, int change) {
@@ -89,7 +97,7 @@ public class GameHandler {
         Attribute endAttribute = gameStateScores
                 .keySet()
                 .stream()
-                .filter(item -> gameStateScores.get(item) == 10 && !item.equals(Attribute.SCALING))
+                .filter(item -> gameStateScores.get(item) == 10)
                 .findAny()
                 .orElseThrow();
 
@@ -101,11 +109,6 @@ public class GameHandler {
             case ORCS ->
                     "Orcs have finally find your potato farm. Alas, orcs are not so interested in potatoes as they" +
                             " are in eating you, and you end up in a cock pot";
-            case SCALING -> "";
         };
-    }
-
-    public int getScaling() {
-        return gameStateScores.get(Attribute.SCALING);
     }
 }

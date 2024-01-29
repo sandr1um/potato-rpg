@@ -4,5 +4,4 @@ public enum Attribute {
     DESTINY,
     POTATOES,
     ORCS,
-    SCALING
 }
