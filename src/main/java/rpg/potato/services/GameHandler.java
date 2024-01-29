@@ -2,9 +2,11 @@ package rpg.potato.services;
 
 import lombok.Getter;
 import rpg.potato.enums.Attribute;
+import rpg.potato.factories.EndEventFactory;
 import rpg.potato.models.DarkEvent;
 import rpg.potato.models.Event;
 import rpg.potato.models.GameStateEntity;
+import rpg.potato.models.Score;
 
 import java.util.EnumMap;
 
@@ -12,25 +14,29 @@ import static rpg.potato.enums.Attribute.*;
 
 
 public class GameHandler {
-    private final EnumMap<Attribute, Integer> gameStateScores;
+    private final EnumMap<Attribute, Score> gameStateScores;
     @Getter
     private int scaling;
+    @Getter
+    private boolean isGameFinished;
 
     public GameHandler() {
         this.gameStateScores = new EnumMap<>(Attribute.class);
-        this.gameStateScores.put(DESTINY, 0);
-        this.gameStateScores.put(POTATOES, 0);
-        this.gameStateScores.put(ORCS, 0);
+        for (Attribute attribute : Attribute.values()) {
+            this.gameStateScores.put(attribute, new Score());
+        }
         this.scaling = 1;
+        this.isGameFinished = false;
     }
 
     public int getScore(Attribute attribute) {
-        return gameStateScores.get(attribute);
+        return gameStateScores.get(attribute).getValue();
     }
 
     public GameStateEntity startNewGame() {
-        gameStateScores.replaceAll((a, v) -> 0);
+        gameStateScores.forEach((a, v) -> v.reset());
         this.scaling = 1;
+        this.isGameFinished = false;
 
         GameStateEntity gameState = new GameStateEntity();
         setGameStateValues(gameState, "New Game!");
@@ -41,16 +47,30 @@ public class GameHandler {
     public GameStateEntity applyEvent(Event event) {
         GameStateEntity gameState = new GameStateEntity();
 
-        if (event instanceof DarkEvent) {
-            this.scaling++;
+        if (isGameFinished) {
+            Attribute endAttribute = gameStateScores
+                    .keySet()
+                    .stream()
+                    .filter(attribute -> gameStateScores.get(attribute).isFinished())
+                    .findFirst()
+                    .get();
+
+            Event endEvent = new EndEventFactory().generateEndEvent(endAttribute);
+            setGameStateValues(gameState, endEvent.getMessage());
+        } else {
+            if (event instanceof DarkEvent) {
+                this.scaling++;
+                setGameStateValues(gameState, event.getMessage());
+            } else {
+                gameStateScores
+                        .keySet()
+                        .forEach(attribute -> gameStateScores.get(attribute).consume(event.getModifier(attribute)));
+                setGameStateValues(gameState, event.getMessage());
+            }
         }
 
-        if (!isFinished()) {
-            event.getModifiers().forEach(this::changeScore);
-        }
-        
-        setGameStateValues(gameState, event.getMessage());
-        
+        isGameFinished = gameStateScores.values().stream().anyMatch(Score::isFinished);
+
         return gameState;
     }
 
@@ -59,8 +79,8 @@ public class GameHandler {
         if (getScore(ORCS) == 0) {
             setGameStateValues(gameState, "There are no orcs");
         } else if (getScore(POTATOES) >= scaling) {
-            changeScore(ORCS, -1);
-            changeScore(POTATOES, -1 * getScaling());
+            gameStateScores.get(ORCS).consume(-1);
+            gameStateScores.get(POTATOES).consume(-1 * scaling);
             setGameStateValues(gameState, "Removed one orc at the expense of " +
                     getScaling() +
                     (getScaling() == 1 ? " potato" : " potatoes"));
@@ -80,24 +100,11 @@ public class GameHandler {
         gameState.setMessage(message);
     }
 
-    public boolean isFinished() {
-        return gameStateScores.keySet()
-                .stream()
-                .anyMatch(item -> gameStateScores.get(item) == 10);
-    }
-
-    private void changeScore(Attribute attribute, int change) {
-        int changes = gameStateScores.get(attribute) + change;
-        if (changes >= 0) {
-            gameStateScores.put(attribute, changes);
-        }
-    }
-
     public String generateFinalMessage() {
         Attribute endAttribute = gameStateScores
                 .keySet()
                 .stream()
-                .filter(item -> gameStateScores.get(item) == 10)
+                .filter(attribute -> gameStateScores.get(attribute).isFinished())
                 .findAny()
                 .orElseThrow();
 

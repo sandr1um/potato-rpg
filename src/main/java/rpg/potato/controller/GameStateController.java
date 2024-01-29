@@ -67,7 +67,7 @@ public class GameStateController {
 
         GameStateEntity entity = gameHandler.applyEvent(nextEvent);
 
-        if (gameHandler.isFinished()) {
+        if (gameHandler.isGameFinished()) {
             String finalMessage = gameHandler.generateFinalMessage();
             entity.setMessage(finalMessage);
         }
@@ -82,7 +82,7 @@ public class GameStateController {
 
         GameStateEntity entity = gameHandler.applyScaling();
 
-        if (gameHandler.isFinished()) {
+        if (gameHandler.isGameFinished()) {
             String finalMessage = gameHandler.generateFinalMessage();
             entity.setMessage(finalMessage);
         }

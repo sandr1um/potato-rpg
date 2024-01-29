@@ -1,5 +1,8 @@
 package rpg.potato.models;
 
+import lombok.Getter;
+
+@Getter
 public class Score {
     private int value;
     public Score() {
@@ -15,7 +18,8 @@ public class Score {
     }
 
     public void consume(int modifier) {
-        this.value += modifier;
+        this.value = Math.max(this.value, this.value + modifier);
+        this.value = Math.min(10, this.value);
     }
 
 }

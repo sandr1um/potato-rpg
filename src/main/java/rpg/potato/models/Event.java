@@ -20,4 +20,8 @@ public class Event {
     public void setModifier(Attribute attribute, int value) {
         modifiers.put(attribute, value);
     }
+
+    public int getModifier(Attribute attribute) {
+        return modifiers.get(attribute) != null ? modifiers.get(attribute) : 0;
+    }
 }
